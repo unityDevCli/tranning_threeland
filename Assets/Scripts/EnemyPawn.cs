@@ -5,13 +5,22 @@ using UnityEngine;
 
 public class EnemyPawn : MonoBehaviour
 {
+    public static EnemyPawn instance;
+    public float speedEnemy;
     public GameObject enemyPrefab; 
     public Transform enemySpawnPoint;
     public Transform enemyTile; 
-    private List<GameObject> enemyPool = new List<GameObject>(); 
+    //private List<GameObject> enemyPool = new List<GameObject>();
+    public List<Transform> enemyTransforms;
+
+    private void OnEnable()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
+
         StartCoroutine(SpawnEnemy());
     }
 
@@ -19,30 +28,16 @@ public class EnemyPawn : MonoBehaviour
     {
         while (true)
         {
-            GameObject enemy = GetPooledEnemy(); 
-            enemy.SetActive(true); 
-
-            StartCoroutine(MoveEnemy(enemy)); 
+            GameObject enemy = ObjectPools.instance.GetPooledObject();
+            enemy.transform.position = enemySpawnPoint.position;
+            enemy.SetActive(true);
+            UpdateEnemyTransforms();
             RotationEnemy(enemy);
-
-            yield return new WaitForSeconds(3f);
+            StartCoroutine(MoveEnemy(enemy));
+            yield return new WaitForSeconds(1f);
         }
     }
-
-    private GameObject GetPooledEnemy()
-    {
-        for (int i = 0; i < enemyPool.Count; i++)
-        {
-            if (!enemyPool[i].activeInHierarchy)
-            {
-                return enemyPool[i];
-            }
-        }
-        GameObject enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, Quaternion.identity);
-        enemyPool.Add(enemy);
-
-        return enemy;
-    }
+   
     private void RotationEnemy(GameObject enemy)
     {
         Vector3 direction = (enemyTile.position - enemy.transform.position).normalized;
@@ -50,40 +45,35 @@ public class EnemyPawn : MonoBehaviour
         enemy.transform.rotation = lookDir;
 
     }
+    private void UpdateEnemyTransforms()
+    {
+        enemyTransforms.Clear(); 
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy.activeSelf) 
+            {
+                enemyTransforms.Add(enemy.transform);
+            }
+        }
+    }
 
     private IEnumerator MoveEnemy(GameObject enemy)
     {
         Vector3 direction = (enemyTile.position - enemy.transform.position).normalized; 
         float distance = Vector3.Distance(enemy.transform.position, enemyTile.position);
-
         while (distance > 0.1f)
         {
-            enemy.transform.Translate(-direction * Time.deltaTime);
-            //Quaternion lookDir = Quaternion.LookRotation(direction);
-            //enemy.transform.rotation = lookDir;
-            distance = Vector3.Distance(enemy.transform.position, enemyTile.position); 
-
+            enemy.transform.Translate(-direction  * Time.deltaTime);
+            distance = Vector3.Distance(enemy.transform.position, enemyTile.position);
             yield return null;
-        }
-        KilledEnemy(enemy);
+        } 
+        
     }
-    public int hitCount;
-    public int maxHits;
-
-    private void KilledEnemy(GameObject enemy)
-    {
-        if (gameObject.CompareTag("Bullet"))
-        {
-            hitCount++;
-            if (hitCount >= maxHits)
-            {
-                gameObject.SetActive(false);
-            }
-        }
-    }
+    
     void Update()
     {
-
     }
 }
 

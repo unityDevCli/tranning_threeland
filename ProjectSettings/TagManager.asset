@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Bullet
+  - BarrierX2
+  - Barrierx4
   layers:
   - Default
   - TransparentFX
