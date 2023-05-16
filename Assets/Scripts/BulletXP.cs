@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletXP : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public List<GameObject> newBulletList = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -13,34 +14,51 @@ public class BulletXP : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-        GameObject newbullet = BulletPools.instance.GetPooledObject();
+        Vector3 currentVelocity = rb.velocity;
         Vector3 myVec = new Vector3(0.1f, 0.0f, 0.1f);
-        newbullet.transform.position = gameObject.transform.position + myVec;
+       
 
         if (other.CompareTag("Barrierx4"))
         {
-            
-            newbullet.SetActive(true);
-            Rigidbody rb2 = newbullet.GetComponent<Rigidbody>();
-            rb2.velocity = (rb.velocity + Vector3.right )*2 ;
-            Debug.Log(rb2.velocity);
+            for(int i = 1; i < 4; i++)
+            {
+                GameObject newBullet = BulletPools.instance.GetPooledObject();
+                newBullet.transform.position = gameObject.transform.position + myVec*i;
+                newBullet.SetActive(true);
+                Rigidbody rb2 = newBullet.GetComponent<Rigidbody>();
+                rb2.velocity = currentVelocity + Vector3.right * (i + 1);
+                newBulletList.Add(newBullet);
+            }
+            StartCoroutine(DeactiveList(1f));
         }
-        if (other.CompareTag("BarrierX2"))
+        else if (other.CompareTag("BarrierX2"))
         {
-            newbullet.SetActive(true);
-            Rigidbody rb2 = newbullet.GetComponent<Rigidbody>();
-            rb2.velocity = (rb.velocity + Vector3.up) * 4;
-            Debug.Log(rb2.velocity);
-           
+            GameObject newBullet = BulletPools.instance.GetPooledObject();
+            newBullet.transform.position = gameObject.transform.position + myVec*2;
+            newBullet.SetActive(true);
+            Rigidbody rb2 = newBullet.GetComponent<Rigidbody>();
+            rb2.velocity = (rb.velocity + Vector3.right*2);
+            //StartCoroutine(DeactivateBulletAfterTime(newBullet, 1f));
+            EnemyPawn.instance.StartCoroutine(DeactivateBulletAfterTime(newBullet, 1f));
         }
-        StartCoroutine(DeactivateBulletAfterTime(newbullet, 1f));
+        
     }
     public IEnumerator DeactivateBulletAfterTime(GameObject bullet, float time)
     {
         yield return new WaitForSeconds(time);
+        Debug.Log("false");
         bullet.SetActive(false);
     }
-
+    public IEnumerator DeactiveList(float time)
+    {
+        yield return new WaitForSeconds(time);
+        foreach(GameObject bullet in newBulletList)
+        {
+            bullet.SetActive(false);
+        }
+        Debug.Log("true");
+        newBulletList.Clear();
+    }
 
 // Update is called once per frame
 void Update()

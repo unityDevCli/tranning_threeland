@@ -29,7 +29,7 @@ public class Health : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            PlayerController.instance.IncreateHP(2);
+            PlayerController.instance.IncreateHP(1);
             
         }
     }

@@ -8,7 +8,7 @@ public class MenuControll : MonoBehaviour
 {
     public static MenuControll instance;
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private GameObject mainPanel;
+    
     [SerializeField] int gameLevel;
     
 
@@ -28,7 +28,6 @@ public class MenuControll : MonoBehaviour
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
-        mainPanel.SetActive(false);
     }
   
 }

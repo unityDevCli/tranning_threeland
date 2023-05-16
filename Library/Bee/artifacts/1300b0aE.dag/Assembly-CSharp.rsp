@@ -366,6 +366,7 @@
 "Assets/Scripts/GateManager.cs"
 "Assets/Scripts/Health.cs"
 "Assets/Scripts/HealthBarPlayer.cs"
+"Assets/Scripts/MainPanel.cs"
 "Assets/Scripts/MenuControll.cs"
 "Assets/Scripts/ObjectPools.cs"
 "Assets/Scripts/PlayerController.cs"

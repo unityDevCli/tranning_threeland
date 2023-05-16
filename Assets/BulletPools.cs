@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletPools : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public int initialSize = 30;
+    public int initialSize = 50;
     private List<GameObject> pool = new List<GameObject>();
     public static BulletPools instance;
     public Transform spawnPoint;

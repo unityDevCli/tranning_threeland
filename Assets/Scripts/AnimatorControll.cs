@@ -8,6 +8,7 @@ public class AnimatorControll : MonoBehaviour
     int isAttackingHash;
     int isShootingHash;
     private bool isCollidingWithEnemy = false;
+    public MenuControll menuControl;
 
     //public Transform enemyTile;
 
@@ -38,7 +39,14 @@ public class AnimatorControll : MonoBehaviour
         if (isCollidingWithEnemy)
         {
             animator.SetBool("isDie", true);
+            MenuControll.instance.GameOver();
+            StartCoroutine(DelayToStop());
         }
+    }
+    private IEnumerator DelayToStop()
+    {
+        yield return new WaitForSeconds(2f);
+        Time.timeScale = 0f;
     }
     private void OnTriggerEnter(Collider other)
     {

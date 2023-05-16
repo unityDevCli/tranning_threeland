@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\EnemyCotroller.cs" />
     <Compile Include="Assets\Scripts\GateManager.cs" />
     <Compile Include="Assets\Scripts\ObjectPools.cs" />
+    <Compile Include="Assets\Scripts\MainPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
