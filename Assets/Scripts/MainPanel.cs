@@ -1,25 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainPanel : MonoBehaviour
 {
-    public bool isPressStart = false;
-    public Button startButton;
+    //public bool isPressStart = false;
+    //public Button startButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        startButton.onClick.AddListener(StartGame);
+        //startButton.onClick.AddListener(StartGame);
     }
-    private void StartGame()
+    public void StartPlaying()
     {
-        if (!isPressStart)
-        {
-            isPressStart= true;
-            // B?t ??u game
-        }
+        int currentScene = SceneManager.GetActiveScene().buildIndex+1;
+        Time.timeScale = 1f;
+        Debug.Log(currentScene);
+        SceneManager.LoadScene(currentScene);
     }
     // Update is called once per frame
     void Update()

@@ -8,7 +8,7 @@ public class BulletsSpawn : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public List<Transform> enemyTransforms;
-    public float bulletLifeTime;
+    private float bulletLifeTime = 0.75f;
     public float bulletSpeed;  
 
     private void OnEnable()

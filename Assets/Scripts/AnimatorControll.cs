@@ -8,10 +8,14 @@ public class AnimatorControll : MonoBehaviour
     int isAttackingHash;
     int isShootingHash;
     private bool isCollidingWithEnemy = false;
-    public MenuControll menuControl;
+    
+    public static AnimatorControll instance;
 
-    //public Transform enemyTile;
 
+    public void OnEnable()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -40,12 +44,13 @@ public class AnimatorControll : MonoBehaviour
         {
             animator.SetBool("isDie", true);
             MenuControll.instance.GameOver();
-            StartCoroutine(DelayToStop());
+            StartCoroutine(DelayToStop(gameObject));
         }
     }
-    private IEnumerator DelayToStop()
+    private IEnumerator DelayToStop(GameObject player)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        player.SetActive(false);
         Time.timeScale = 0f;
     }
     private void OnTriggerEnter(Collider other)

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class Health : MonoBehaviour
     public int maxHealth = 100;
     public HealthBarPlayer healthBarPlayer;
     public static Health instance;
-    GameObject player;
+
     private void OnEnable()
     {
         instance = this;
@@ -16,9 +18,11 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         curHealth = maxHealth;
-        
+      
+       
+
     }
 
     void Update()
@@ -31,6 +35,8 @@ public class Health : MonoBehaviour
         {
             PlayerController.instance.IncreateHP(1);
             
+            
         }
     }
+   
 }

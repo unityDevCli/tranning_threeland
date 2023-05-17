@@ -23,12 +23,13 @@ public class BulletXP : MonoBehaviour
             for(int i = 1; i < 4; i++)
             {
                 GameObject newBullet = BulletPools.instance.GetPooledObject();
+                newBulletList.Add(newBullet);
                 newBullet.transform.position = gameObject.transform.position + myVec*i;
                 newBullet.SetActive(true);
                 Rigidbody rb2 = newBullet.GetComponent<Rigidbody>();
                 rb2.velocity = currentVelocity + Vector3.right * (i + 1);
-                newBulletList.Add(newBullet);
             }
+            Debug.Log(newBulletList.Count);
             StartCoroutine(DeactiveList(1f));
         }
         else if (other.CompareTag("BarrierX2"))
@@ -37,8 +38,7 @@ public class BulletXP : MonoBehaviour
             newBullet.transform.position = gameObject.transform.position + myVec*2;
             newBullet.SetActive(true);
             Rigidbody rb2 = newBullet.GetComponent<Rigidbody>();
-            rb2.velocity = (rb.velocity + Vector3.right*2);
-            //StartCoroutine(DeactivateBulletAfterTime(newBullet, 1f));
+            rb2.velocity = (rb.velocity + Vector3.right* 0.2f);
             EnemyPawn.instance.StartCoroutine(DeactivateBulletAfterTime(newBullet, 1f));
         }
         
@@ -46,15 +46,18 @@ public class BulletXP : MonoBehaviour
     public IEnumerator DeactivateBulletAfterTime(GameObject bullet, float time)
     {
         yield return new WaitForSeconds(time);
-        Debug.Log("false");
+        //Debug.Log("false");
         bullet.SetActive(false);
     }
     public IEnumerator DeactiveList(float time)
     {
+        Debug.Log(newBulletList.Count);
         yield return new WaitForSeconds(time);
-        foreach(GameObject bullet in newBulletList)
+
+        Debug.Log("11111111111111: "+newBulletList.Count);
+        foreach (GameObject newbullet in newBulletList)
         {
-            bullet.SetActive(false);
+            newbullet.SetActive(false);
         }
         Debug.Log("true");
         newBulletList.Clear();

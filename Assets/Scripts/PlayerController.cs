@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     public static PlayerController instance;
     //public HealthBarPlayer healthBarPlayer;
-    private int curHealth;
-    private int maxHealth = 100;
+    public int curHealth;
+    public int maxHealth = 100;
     public float time;
     public Transform playerTransform;
     public MenuControll menuControl;
@@ -54,17 +54,18 @@ public class PlayerController : MonoBehaviour
             if (animator != null)
             {
                 animator.SetBool("isDie", true);
-                StartCoroutine(ExampleCoroutine());
-                menuControl.GameOver();               
+                StartCoroutine(ExampleCoroutine(1f));
+                MenuControll.instance.GameOver();
+                AnimatorControll.instance.StartCoroutine(ExampleCoroutine(1f));
             }
             
         }
 
     }
-    IEnumerator ExampleCoroutine()
+    IEnumerator ExampleCoroutine(float time)
     {
         yield return new WaitForSeconds(time);
         playerTransform.gameObject.SetActive(false);
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
     }
 }

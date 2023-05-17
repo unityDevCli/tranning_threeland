@@ -18,18 +18,6 @@ public class GateManager : MonoBehaviour
     {
         
     }
-    /*private void SpawnBarrier()
-    {
-        var randomGateIndex = Random.Range(0, gameObjects.Count);
-        Debug.Log(randomGateIndex);
-        GameObject barrier = Instantiate(gameObjects[randomGateIndex], barrierSpawnPoint.position, Quaternion.identity);
-        barrier.SetActive(true);
-        timelife--;
-        if (timelife <= 0)
-        {
-            barrier.SetActive(false);
-        }
-    }*/
     private IEnumerator SpawnBarriers()
     {
         while (true)
