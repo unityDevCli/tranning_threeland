@@ -11,7 +11,7 @@ public class EnemyPawn : MonoBehaviour
     public Transform enemySpawnPoint;
     public Transform enemyTile; 
     //private List<GameObject> enemyPool = new List<GameObject>();
-    public List<Transform> enemyTransforms;
+    //public List<Transform> enemyTransforms;
 
     private void OnEnable()
     {
@@ -31,7 +31,7 @@ public class EnemyPawn : MonoBehaviour
             GameObject enemy = ObjectPools.instance.GetPooledObject();
             enemy.transform.position = enemySpawnPoint.position;
             enemy.SetActive(true);
-            UpdateEnemyTransforms();
+            //UpdateEnemyTransforms();
             RotationEnemy(enemy);
             StartCoroutine(MoveEnemy(enemy));
             yield return new WaitForSeconds(1f);
@@ -45,19 +45,19 @@ public class EnemyPawn : MonoBehaviour
         enemy.transform.rotation = lookDir;
 
     }
-    private void UpdateEnemyTransforms()
-    {
-        enemyTransforms.Clear(); 
+    //private void UpdateEnemyTransforms()
+    //{
+    //    enemyTransforms.Clear(); 
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
-        {
-            if (enemy.activeSelf) 
-            {
-                enemyTransforms.Add(enemy.transform);
-            }
-        }
-    }
+    //    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    //    foreach (GameObject enemy in enemies)
+    //    {
+    //        if (enemy.activeSelf) 
+    //        {
+    //            enemyTransforms.Add(enemy.transform);
+    //        }
+    //    }
+    //}
 
     private IEnumerator MoveEnemy(GameObject enemy)
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyCotroller : MonoBehaviour
@@ -8,12 +9,10 @@ public class EnemyCotroller : MonoBehaviour
     public int maxHits;
     public static EnemyCotroller instance;  
     private Animator animator;
-    //public float time;
-    public Health health;
     public HealthBarPlayer healthBarPlayer;
-    public int myScore;
-
-
+    public int myScore = 0;
+    //public MenuControll MenuControll;
+    [SerializeField] private GameObject scoreFloating;
     private void OnEnable()
     {
         instance = this;
@@ -36,19 +35,28 @@ public class EnemyCotroller : MonoBehaviour
         {
             hitCount++;
             
+
             if (hitCount >= maxHits)
             {
-                animator.SetBool("IsDie", true); 
-                AddScore(1);
-                StartCoroutine(ExampleCoroutine(1f));
+                
+                animator.SetBool("IsDie", true);
+                AddScore();
+                StartCoroutine(ExampleCoroutine(0.75f));
+                StartCoroutine(AddScoreFloating());
             }
         }
 
     }
-    public void AddScore(int scoreAdd)
+    public IEnumerator AddScoreFloating()
     {
-        myScore += scoreAdd;
-        MenuControll.instance.SetScore(myScore);
+        Vector3 height = Vector3.up * 2;
+        GameObject text = Instantiate(scoreFloating, (gameObject.transform.position + height), Quaternion.identity);
+        yield return new WaitForSeconds(0.3f);
+        
+    }
+    public void AddScore()
+    {
+        MenuControll.instance.myScore++;
     }
     IEnumerator ExampleCoroutine(float time)
     {

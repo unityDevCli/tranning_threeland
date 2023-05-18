@@ -1319,9 +1319,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHits: 3
-  timeDelay: 1
-  health: {fileID: 0}
   healthBarPlayer: {fileID: 0}
+  myScore: 0
+  scoreFloating: {fileID: 478805725479818424, guid: 603369a44a6e2a74b8121eb12787f94d, type: 3}
 --- !u!136 &7319807099036196751
 CapsuleCollider:
   m_ObjectHideFlags: 0

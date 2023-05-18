@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class MenuControll : MonoBehaviour
@@ -9,7 +10,7 @@ public class MenuControll : MonoBehaviour
     public static MenuControll instance;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] int gameLevel;
-    [SerializeField] Text display1;
+    public Text display1;
     [SerializeField] private Text display2;
     public int myScore;
 
@@ -19,13 +20,11 @@ public class MenuControll : MonoBehaviour
     }
     private void Start()
     {
-        //myScore = Score.instance.myScore;
-        //PlayerPrefs.SetInt("score", myScore);
+        //display1.text = "0";
     }
     public void Restart()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log(currentScene);
         Time.timeScale = 1f;
         SceneManager.LoadScene(currentScene);
     }
@@ -39,15 +38,17 @@ public class MenuControll : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
     }
-    public void SetScore(int score)
-    {
-        display1.text = score.ToString();
-        
-    }
+    //public void SetScore(int score)
+    //{
+    //    myScore = score;
+    //    display1.text = myScore.ToString();
+    //    display2.text = score.ToString();
+
+    //}
     private void Update()
     {
-        int score = EnemyCotroller.instance.myScore;
-        display1.text = score.ToString();
-        display2.text = score.ToString();
+        display1.text = myScore.ToString();
+        display2.text = myScore.ToString();
     }
+
 }

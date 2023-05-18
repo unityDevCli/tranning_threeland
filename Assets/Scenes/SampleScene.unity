@@ -308,7 +308,6 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4455537681482444900, guid: f1c22035641709945ae77def25fdcfb4, type: 3}
   enemySpawnPoint: {fileID: 1197822589}
   enemyTile: {fileID: 2004967992}
-  enemyTransforms: []
 --- !u!4 &129897417
 Transform:
   m_ObjectHideFlags: 0
@@ -758,7 +757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6146701868175906547, guid: 0ac36dbaafe170c48b166220eedd3b8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.31
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 6146701868175906547, guid: 0ac36dbaafe170c48b166220eedd3b8e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1080,7 +1079,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7697766105505892363, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
   bulletSpawnPoint: {fileID: 1564149062}
-  enemyTransforms: []
   bulletSpeed: 50
 --- !u!1 &603057560
 GameObject:
@@ -1535,7 +1533,6 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4455537681482444900, guid: f1c22035641709945ae77def25fdcfb4, type: 3}
   enemySpawnPoint: {fileID: 780463031}
   enemyTile: {fileID: 1727062201}
-  enemyTransforms: []
 --- !u!114 &722136264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2649,7 +2646,6 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4455537681482444900, guid: f1c22035641709945ae77def25fdcfb4, type: 3}
   enemySpawnPoint: {fileID: 2143779981}
   enemyTile: {fileID: 947203776}
-  enemyTransforms: []
 --- !u!4 &1232438194
 Transform:
   m_ObjectHideFlags: 0
@@ -3382,6 +3378,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7697766105505892360, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7697766105505892360, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -3394,6 +3394,10 @@ PrefabInstance:
       value: Bullet
       objectReference: {fileID: 0}
     - target: {fileID: 7697766105505892363, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
+      propertyPath: m_TagString
+      value: Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7697766105505892363, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -3403,7 +3407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7697766105505892367, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.31
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 7697766105505892367, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3411,7 +3415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7697766105505892367, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.86
+      value: -18.15
       objectReference: {fileID: 0}
     - target: {fileID: 7697766105505892367, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3443,6 +3447,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 7697766105505892360, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
+    - {fileID: -7686734238115566449, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
     - {fileID: 6617355467539846710, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d329b9dbdf135a843a6fd15b19cfa74a, type: 3}
 --- !u!1 &1650426468
@@ -3547,7 +3554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727062200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.872, y: -0.79, z: -29.69}
+  m_LocalPosition: {x: 0.48, y: -0.79, z: -29.69}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3824,7 +3831,7 @@ GameObject:
   - component: {fileID: 1813163623}
   - component: {fileID: 1813163622}
   m_Layer: 0
-  m_Name: Column
+  m_Name: Pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4150,7 +4157,6 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4455537681482444900, guid: f1c22035641709945ae77def25fdcfb4, type: 3}
   enemySpawnPoint: {fileID: 520795113}
   enemyTile: {fileID: 2101684445}
-  enemyTransforms: []
 --- !u!4 &2138276951
 Transform:
   m_ObjectHideFlags: 0

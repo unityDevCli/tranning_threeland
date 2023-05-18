@@ -18,11 +18,8 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
         curHealth = maxHealth;
-      
-       
-
     }
 
     void Update()

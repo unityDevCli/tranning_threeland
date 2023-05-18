@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            DamagePlayer(5);
+            DamagePlayer(2);
         }
         PlayerDie();
     }
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isDie", true);
                 StartCoroutine(ExampleCoroutine(1f));
                 MenuControll.instance.GameOver();
-                AnimatorControll.instance.StartCoroutine(ExampleCoroutine(1f));
+                AnimatorControll.instance.StartCoroutine(ExampleCoroutine(0.75f));
             }
             
         }
