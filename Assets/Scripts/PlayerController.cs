@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
             if (animator != null)
             {
                 animator.SetBool("isDie", true);
-                StartCoroutine(ExampleCoroutine(1f));
+                StartCoroutine(ExampleCoroutine(time));
                 MenuControll.instance.GameOver();
                 AnimatorControll.instance.StartCoroutine(ExampleCoroutine(0.75f));
             }

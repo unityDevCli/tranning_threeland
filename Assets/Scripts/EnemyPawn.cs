@@ -9,10 +9,11 @@ public class EnemyPawn : MonoBehaviour
     public float speedEnemy;
     public GameObject enemyPrefab; 
     public Transform enemySpawnPoint;
-    public Transform enemyTile; 
-    //private List<GameObject> enemyPool = new List<GameObject>();
+    public Transform enemyTile;
+    public int enemyMax;
+    public int enemyCount;
+    public List<GameObject> enemyPool = new List<GameObject>();
     //public List<Transform> enemyTransforms;
-
     private void OnEnable()
     {
         instance = this;
@@ -28,16 +29,19 @@ public class EnemyPawn : MonoBehaviour
     {
         while (true)
         {
-            GameObject enemy = ObjectPools.instance.GetPooledObject();
-            enemy.transform.position = enemySpawnPoint.position;
-            enemy.SetActive(true);
-            //UpdateEnemyTransforms();
-            RotationEnemy(enemy);
-            StartCoroutine(MoveEnemy(enemy));
+            if (enemyCount < enemyMax)
+            {
+                enemyCount++;
+                GameObject enemy = ObjectPools.instance.GetPooledObject();
+                enemy.transform.position = enemySpawnPoint.position;
+                enemy.SetActive(true);
+                enemyPool.Add(enemy);
+                RotationEnemy(enemy);
+                StartCoroutine(MoveEnemy(enemy));
+            }
             yield return new WaitForSeconds(1f);
         }
     }
-   
     private void RotationEnemy(GameObject enemy)
     {
         Vector3 direction = (enemyTile.position - enemy.transform.position).normalized;
@@ -45,19 +49,7 @@ public class EnemyPawn : MonoBehaviour
         enemy.transform.rotation = lookDir;
 
     }
-    //private void UpdateEnemyTransforms()
-    //{
-    //    enemyTransforms.Clear(); 
-
-    //    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-    //    foreach (GameObject enemy in enemies)
-    //    {
-    //        if (enemy.activeSelf) 
-    //        {
-    //            enemyTransforms.Add(enemy.transform);
-    //        }
-    //    }
-    //}
+    
 
     private IEnumerator MoveEnemy(GameObject enemy)
     {

@@ -41,18 +41,20 @@ public class EnemyCotroller : MonoBehaviour
                 
                 animator.SetBool("IsDie", true);
                 AddScore();
-                StartCoroutine(ExampleCoroutine(0.75f));
-                StartCoroutine(AddScoreFloating());
+                StartCoroutine(ExampleCoroutine(0.5f));
+                ScoreFloating();
+
             }
         }
 
     }
-    public IEnumerator AddScoreFloating()
+    
+    public void ScoreFloating()
     {
-        Vector3 height = Vector3.up * 2;
+        Vector3 height = Vector3.up;
         GameObject text = Instantiate(scoreFloating, (gameObject.transform.position + height), Quaternion.identity);
-        yield return new WaitForSeconds(0.3f);
-        
+        Destroy(text, 1f);
+
     }
     public void AddScore()
     {

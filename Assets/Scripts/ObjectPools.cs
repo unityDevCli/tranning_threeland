@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectPools : MonoBehaviour
 {
     public GameObject prefab;
-    public int initialSize = 30;
+    public int initialSize;
     private List<GameObject> pool = new List<GameObject>();
     public static ObjectPools instance;
     public Transform spawnPoint;

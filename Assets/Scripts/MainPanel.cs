@@ -18,7 +18,6 @@ public class MainPanel : MonoBehaviour
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex+1;
         Time.timeScale = 1f;
-        Debug.Log(currentScene);
         SceneManager.LoadScene(currentScene);
     }
     // Update is called once per frame

@@ -49,7 +49,7 @@ public class AnimatorControll : MonoBehaviour
     }
     private IEnumerator DelayToStop(GameObject player)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         player.SetActive(false);
         Time.timeScale = 0f;
     }

@@ -1318,7 +1318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8daa8514d4fcdc47a21c637bf9172d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHits: 3
+  maxHits: 2
   healthBarPlayer: {fileID: 0}
   myScore: 0
   scoreFloating: {fileID: 478805725479818424, guid: 603369a44a6e2a74b8121eb12787f94d, type: 3}

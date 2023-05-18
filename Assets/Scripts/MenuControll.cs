@@ -9,10 +9,13 @@ public class MenuControll : MonoBehaviour
 {
     public static MenuControll instance;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject winPanel;
     [SerializeField] int gameLevel;
     public Text display1;
     [SerializeField] private Text display2;
+    public Text display3;
     public int myScore;
+  
 
     private void OnEnable()
     {
@@ -38,17 +41,37 @@ public class MenuControll : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
     }
-    //public void SetScore(int score)
-    //{
-    //    myScore = score;
-    //    display1.text = myScore.ToString();
-    //    display2.text = score.ToString();
+    public IEnumerator YouWin()
+    {
+        yield return new WaitForSeconds(0.5f);
+        winPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void SetWin()
+    {
+        bool allEnemiesInactive = true;
 
-    //}
+        foreach (GameObject enemy in EnemyPawn.instance.enemyPool)
+        {
+            if (enemy.activeSelf)
+            {
+                allEnemiesInactive = false;
+                break;
+            }
+        }
+
+        if (allEnemiesInactive)
+        {
+            StartCoroutine(YouWin());
+        }
+    }
     private void Update()
     {
         display1.text = myScore.ToString();
         display2.text = myScore.ToString();
+        display3.text = myScore.ToString();
+        SetWin();
+        
     }
 
 }

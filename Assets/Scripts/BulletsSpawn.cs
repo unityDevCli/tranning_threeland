@@ -7,8 +7,6 @@ public class BulletsSpawn : MonoBehaviour
     public static BulletsSpawn instance;
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
-    //public List<Transform> enemyTransforms;
-    //private float bulletLifeTime = 0.75f;
     public float bulletSpeed;  
 
     private void OnEnable()
@@ -38,6 +36,7 @@ public class BulletsSpawn : MonoBehaviour
         bullet.SetActive(true);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = direction * bulletSpeed;
+        StartCoroutine(DeactivateBulletAfterTime(bullet, 1f));
     }
 
     public IEnumerator DeactivateBulletAfterTime(GameObject bullet, float time)

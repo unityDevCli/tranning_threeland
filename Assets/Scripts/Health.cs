@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
 {
     public int curHealth = 0;
     public int maxHealth = 100;
-    public HealthBarPlayer healthBarPlayer;
+    private HealthBarPlayer healthBarPlayer;
     public static Health instance;
 
     private void OnEnable()
