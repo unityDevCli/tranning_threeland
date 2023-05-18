@@ -77,14 +77,3 @@ crashlytics-build.properties
 #/////////////////////////////////////////////////////////////////////////////
 
 .idea/
-Assets/StreamingAssets/google-services-desktop.json
-Assets/StreamingAssets/google-services-desktop.json.meta
-Assets/StreamingAssets/build_info
-Assets/StreamingAssets/build_info.meta
-
-FoodLand/
-abc_BackUpThisFolder_ButDontShipItWithYourGame/
-abc_BurstDebugInformation_DoNotShip/
-fls_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AudioModule.dll
-fls_BackUpThisFolder_ButDontShipItWithYourGame/
-fls_BurstDebugInformation_DoNotShip/
